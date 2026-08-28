@@ -1,0 +1,16 @@
+{
+  "name": "forkify-project",
+  "version": "1.0.0",
+  "description": "A modern recipe web application built with HTML, SCSS, and JavaScript, featuring recipe search, detailed recipe views, and bookmarking.",
+  "license": "ISC",
+  "author": "Abdullah safi",
+  "type": "module",
+  "scripts": {
+    "start": "parcel index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.16.4",
+    "parcel": "^2.16.4"
+  }
+}
