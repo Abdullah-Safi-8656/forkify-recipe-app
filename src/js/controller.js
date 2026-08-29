@@ -1,6 +1,8 @@
 import icons from 'url:../img/icons.svg';
 import 'core-js/stable';
-import 'regenerator-runtime/runtime'
+import 'regenerator-runtime/runtime';
+
+
 const recipeContainer = document.querySelector('.recipe');
 
 const timeout = function (s) {
@@ -31,10 +33,18 @@ const renderSpiner = function (ParentEl) {
 
 const showRecipe = async function () {
   try {
+
+    const id = window.location.hash.slice(1);
+    console.log(id)
+
+    if (!id) {
+      return 
+    };
+
     // 1) Loading recipe and loading spinner.
     renderSpiner(recipeContainer)
     const response = await fetch(
-      'https://forkify-api.jonas.io/api/v2/recipes/664c8f193e7aa067e94e82b8',
+      `https://forkify-api.jonas.io/api/v2/recipes/${id}`,
     );
 
     const data = await response.json();
@@ -155,8 +165,11 @@ const showRecipe = async function () {
     recipeContainer.innerHTML = '';
     recipeContainer.insertAdjacentHTML('afterbegin', markup);
   } catch (err) {
+    recipeContainer.innerHTML = ''
     alert(err);
   }
 };
 
-showRecipe();
+// showRecipe();
+
+['hashchange', 'load'].forEach(ev => window.addEventListener(ev, showRecipe));
