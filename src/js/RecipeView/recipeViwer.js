@@ -9,7 +9,6 @@ class RecipeView {
     this.#data = data;
     const markup = this.#generateMarkup();
     this.#clear();
-    // recipeContainer.innerHTML = '';
     this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
@@ -21,7 +20,7 @@ class RecipeView {
       </svg>
     </div> 
   `;
-    this.#parentElement.innerHTML = '';
+    this.#clear();
     this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   };
 
