@@ -1,5 +1,6 @@
 import * as modle from './model.js';
-import recipeViwe from './RecipeView/recipeViwer.js';
+import RecipeView from './views/recipeViwer.js';
+import searchResult from './views/searchView.js'
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
@@ -9,21 +10,36 @@ const controlRecipes = async function () {
     console.log(id);
 
     if (!id) return;
-    recipeViwe.renderSpiner();
+    RecipeView.renderSpiner();
 
     // 1) Loading recipe.
     await modle.loadRecipe(id);
     // const { recipe } = modle.state;
 
     // Rendering recipe
-    recipeViwe.render(modle.state.recipe);
+    RecipeView.render(modle.state.recipe);
   } catch (err) {
-    recipeViwe.renderErrorMessage(err.message)
+    RecipeView.renderErrorMessage(err.message)
   }
 };
 
+const controlSearchResults = async function() {
+  try {
+    // getting search query
+    const query = searchResult.getQuery();
+    if (!query) return
+    // calling loadSearchResults from modle module
+    await modle.loadSearchResults(query);
+    console.log(modle.state.search.results)
+
+  } catch(err) {
+    console.log(err)
+  }
+}
+
 const init = function () {
-  recipeViwe.addHandlerRender(controlRecipes);
+  RecipeView.addHandlerRender(controlRecipes);
+  searchResult.addSearchHandler (controlSearchResults)
 };
 
 init();
