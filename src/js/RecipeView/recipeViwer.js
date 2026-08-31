@@ -1,9 +1,11 @@
 import icons from 'url:../../img/icons.svg';
 import Fraction from 'fraction.js';
+import { mark } from 'regenerator-runtime';
 
 class RecipeView {
   #parentElement = document.querySelector('.recipe');
   #data;
+  #ErrorMessage = 'We could not find that recipe. please try another one!';
 
   render(data) {
     this.#data = data;
@@ -12,7 +14,7 @@ class RecipeView {
     this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
-  renderSpiner = function () {
+  renderSpiner() {
     const markup = `
     <div class="spinner">
       <svg>
@@ -20,9 +22,9 @@ class RecipeView {
       </svg>
     </div> 
   `;
-    this.#clear();
-    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
-  };
+  this.#clear();
+  this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+  }
 
   #clear() {
     this.#parentElement.innerHTML = '';
@@ -30,6 +32,22 @@ class RecipeView {
 
   addHandlerRender(handler) {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
+  }
+
+  renderErrorMessage(message = this.#ErrorMessage) {
+    const markup = `
+    <div class="error">
+      <div>
+        <svg>
+          <use href="${icons}#icon-alert-triangle"></use>
+        </svg>
+      </div>
+      <p>${message}</p>
+    </div>
+
+    `;
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
   #generateMarkup() {
