@@ -3,10 +3,7 @@ import recipeViwe from './RecipeView/recipeViwer.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-
-
-
-const controllerRecipe = async function () {
+const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
     console.log(id);
@@ -16,16 +13,17 @@ const controllerRecipe = async function () {
 
     // 1) Loading recipe.
     await modle.loadRecipe(id);
-    const { recipe } = modle.state;
+    // const { recipe } = modle.state;
 
     // Rendering recipe
     recipeViwe.render(modle.state.recipe);
-
   } catch (err) {
     alert(err);
   }
 };
 
+const init = function () {
+  recipeViwe.addHandlerRender(controlRecipes);
+};
 
-
-['hashchange', 'load'].forEach(ev => window.addEventListener(ev, controllerRecipe));
+init();
