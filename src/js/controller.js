@@ -18,8 +18,7 @@ const controlRecipes = async function () {
     // Rendering recipe
     recipeViwe.render(modle.state.recipe);
   } catch (err) {
-    document.querySelector('.recipe').innerHTML = ''
-    recipeViwe.renderErrorMessage()
+    recipeViwe.renderErrorMessage(err.message)
   }
 };
 

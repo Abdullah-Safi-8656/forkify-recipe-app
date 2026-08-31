@@ -1,4 +1,4 @@
-import { TIMER_SEC } from "./config.js";
+import { TIMER_SEC } from './config.js';
 
 export const timeout = function (s) {
   return new Promise(function (_, reject) {
@@ -9,15 +9,13 @@ export const timeout = function (s) {
 };
 
 export const GetJson = async function (url) {
-  try {
-    const response = await Promise.race([fetch(url), timeout(TIMER_SEC)]);
-    const data = await response.json();
+  const response = await Promise.race([fetch(url), timeout(TIMER_SEC)]);
+  const data = await response.json();
 
-    if (!response.ok)
-      throw new Error(`something went wrong please try again later`);
+  if (!response.ok)
+    throw new Error(
+      `We could not find that recipe. please try another one! ${response.status}`,
+    );
 
-    return data;
-  } catch (err) {
-    throw err;
-  }
+  return data;
 };

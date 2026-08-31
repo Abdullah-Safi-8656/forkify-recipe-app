@@ -5,7 +5,8 @@ import { mark } from 'regenerator-runtime';
 class RecipeView {
   #parentElement = document.querySelector('.recipe');
   #data;
-  #ErrorMessage = 'We could not find that recipe. please try another one!';
+  // #ErrorMessage = 'We could not find that recipe. please try another one!';
+  #SuccessMessage = '';
 
   render(data) {
     this.#data = data;
@@ -22,8 +23,8 @@ class RecipeView {
       </svg>
     </div> 
   `;
-  this.#clear();
-  this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
   #clear() {
@@ -34,7 +35,7 @@ class RecipeView {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
   }
 
-  renderErrorMessage(message = this.#ErrorMessage) {
+  renderErrorMessage(message) {
     const markup = `
     <div class="error">
       <div>
@@ -42,6 +43,22 @@ class RecipeView {
           <use href="${icons}#icon-alert-triangle"></use>
         </svg>
       </div>
+      <p>${message}</p>
+    </div>
+
+    `;
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  renderSuccessMessage(message = this.#SuccessMessage) {
+    const markup = `
+    <div class="message">
+        <div>
+          <svg>
+            <use href="${icons}icon-smile"></use>
+          </svg>
+        </div>
       <p>${message}</p>
     </div>
 
