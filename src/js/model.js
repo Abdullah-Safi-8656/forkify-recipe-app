@@ -45,7 +45,7 @@ export const loadSearchResults = async function (query) {
       };
     });
   } catch (err) {
-    alert(err);
+    // alert(err);
     throw err;
   }
 };
