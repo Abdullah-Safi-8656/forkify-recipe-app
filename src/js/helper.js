@@ -13,9 +13,7 @@ export const GetJson = async function (url) {
   const data = await response.json();
 
   if (!response.ok)
-    throw new Error(
-      `We could not find that recipe. please try another one! ${response.status}`,
-    );
+    throw new Error(`We could not find that recipe. please try another one! ${response.status}`);
 
   return data;
 };

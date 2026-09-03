@@ -3,14 +3,13 @@ import icons from 'url:../../img/icons.svg';
 import Fraction from 'fraction.js';
 import { mark } from 'regenerator-runtime';
 
-class RecipeView extends View{
+class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
   _ErrorMessage = 'We could not find that recipe. please try another one!';
   _SuccessMessage = '';
-  
-  
+
   addHandlerRender(handler) {
-    ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
+    ['hashchange', 'load'].forEach((ev) => window.addEventListener(ev, handler));
   }
 
   _generateMarkup() {
