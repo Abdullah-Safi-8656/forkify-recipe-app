@@ -6,7 +6,6 @@ import paginationView from './views/paginationView.js';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import resultView from './views/resultView.js';
 
 // if (module.hot) {
 //   module.hot.accept()
@@ -15,8 +14,7 @@ import resultView from './views/resultView.js';
 const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
-    console.log(id);
-
+    console.log(id)
     if (!id) return;
     RecipeView.renderSpiner();
 
@@ -59,8 +57,17 @@ const Pagination = function (goToPage) {
   paginationView.render(modle.state.search);
 };
 
+const controlServings = function(newServings) {
+  // Update the recipe servings in the state
+  modle.UpdateServings(newServings)
+
+  // Update the recipe view
+  RecipeView.render(modle.state.recipe)
+}
+
 const init = function () {
   RecipeView.addHandlerRender(controlRecipes);
+  RecipeView.addHandlerRenderUpdateServings(controlServings)
   searchResult.addSearchHandler(controlSearchResults);
   paginationView._addHandlerClick(Pagination);
 };
