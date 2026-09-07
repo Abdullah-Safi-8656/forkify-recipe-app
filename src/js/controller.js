@@ -6,6 +6,7 @@ import paginationView from './views/paginationView.js';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import resultView from './views/resultView.js';
 
 // if (module.hot) {
 //   module.hot.accept()
@@ -18,9 +19,11 @@ const controlRecipes = async function () {
     if (!id) return;
     RecipeView.renderSpiner();
 
+    // Update results view to mark selected search results
+    resultView.update(modle.getSearchResultsPage())
+
     // 1) Loading recipe.
     await modle.loadRecipe(id);
-    // const { recipe } = modle.state;
 
     // Rendering recipe
     RecipeView.render(modle.state.recipe);
@@ -62,7 +65,9 @@ const controlServings = function(newServings) {
   modle.UpdateServings(newServings)
 
   // Update the recipe view
-  RecipeView.render(modle.state.recipe)
+  // RecipeView.render(modle.state.recipe)
+  RecipeView.update(modle.state.recipe)
+
 }
 
 const init = function () {
