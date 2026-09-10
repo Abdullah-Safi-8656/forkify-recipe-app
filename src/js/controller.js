@@ -3,8 +3,8 @@ import RecipeView from './views/recipeViwer.js';
 import searchResult from './views/searchView.js';
 import ResultView from './views/resultView.js';
 import paginationView from './views/paginationView.js';
+import bookmarksView from './views/bookmark.View.js';
 
-import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import resultView from './views/resultView.js';
 
@@ -20,7 +20,8 @@ const controlRecipes = async function () {
     RecipeView.renderSpiner();
 
     // Update results view to mark selected search results
-    resultView.update(modle.getSearchResultsPage())
+    resultView.update(modle.getSearchResultsPage());
+    bookmarksView.update(modle.state.bookMarks);
 
     // 1) Loading recipe.
     await modle.loadRecipe(id);
@@ -70,9 +71,21 @@ const controlServings = function(newServings) {
 
 }
 
+const controlAddBookmark = function() {
+  // Add/Delete the bookmark
+  if (!modle.state.recipe.bookMarked) modle.addBookMarks(modle.state.recipe);
+  else modle.deleteBookmark(modle.state.recipe.id);
+
+  // Update bookmark
+  RecipeView.update(modle.state.recipe);
+
+  bookmarksView.render(modle.state.bookMarks)
+}
+
 const init = function () {
   RecipeView.addHandlerRender(controlRecipes);
-  RecipeView.addHandlerRenderUpdateServings(controlServings)
+  RecipeView.addHandlerRenderUpdateServings(controlServings);
+  RecipeView.addHandlerAddBookmarksRecipes(controlAddBookmark)
   searchResult.addSearchHandler(controlSearchResults);
   paginationView._addHandlerClick(Pagination);
 };
