@@ -103,3 +103,45 @@
     }
   }
 }
+
+
+@media only screen and (max-width: $bp-medium) {
+  .preview {
+    &__link:link,
+    &__link:visited {
+      padding: 1.25rem 2rem;
+    }
+
+    &__fig {
+      flex: 0 0 5rem;
+      height: 5rem;
+      width: 5rem;
+      margin-right: 1.5rem;
+    }
+
+    &__title {
+      max-width: 20rem;
+      font-size: 1.3rem;
+    }
+  }
+}
+
+@media only screen and (max-width: $bp-small) {
+  .preview {
+    &__link:link,
+    &__link:visited {
+      padding: 1.5rem 2rem;
+    }
+
+    &__fig {
+      flex: 0 0 5.8rem;
+      height: 5.8rem;
+      width: 5.8rem;
+    }
+
+    &__title {
+      max-width: 100%;
+      font-size: 1.4rem;
+    }
+  }
+}

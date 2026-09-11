@@ -211,3 +211,47 @@
     font-weight: 600;
   }
 }
+
+
+@media only screen and (max-width: $bp-small) {
+  .btn {
+    padding: 1.25rem 2.5rem;
+    font-size: 1.4rem;
+  }
+
+  .message,
+  .error {
+    max-width: 100%;
+    padding: 4rem 2.5rem;
+
+    p {
+      font-size: 1.6rem;
+    }
+  }
+
+  .heading--2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media only screen and (max-width: $bp-smallest) {
+  .btn {
+    padding: 1.1rem 2rem;
+    font-size: 1.3rem;
+  }
+
+  .message,
+  .error {
+    padding: 3rem 2rem;
+
+    svg {
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin-left: 1rem;
+    }
+  }
+}

@@ -177,3 +177,143 @@
     font-weight: 700;
   }
 }
+
+
+@media only screen and (max-width: $bp-medium) {
+  .recipe {
+    &__details {
+      padding: 6rem 4rem 3rem;
+    }
+
+    &__info {
+      font-size: 1.5rem;
+
+      &:not(:last-child) {
+        margin-right: 2.5rem;
+      }
+    }
+
+    &__ingredients {
+      padding: 4rem 4rem;
+    }
+
+    &__directions {
+      padding: 4rem 5rem;
+    }
+  }
+}
+
+@media only screen and (max-width: $bp-small) {
+  .recipe {
+    &__fig {
+      height: 28rem;
+    }
+
+    &__title {
+      width: 85%;
+      font-size: 2.6rem;
+      line-height: 1.7;
+
+      span {
+        padding: 1rem 1.5rem;
+      }
+    }
+
+    &__details {
+      padding: 6rem 2rem 3rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    &__info {
+      font-size: 1.4rem;
+
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+
+    &__user-generated {
+      margin-right: 0;
+    }
+
+    &__ingredients {
+      padding: 4rem 2rem;
+    }
+
+    &__ingredient-list {
+      width: 100%;
+      grid-template-columns: 1fr;
+      gap: 1.8rem;
+    }
+
+    &__ingredient {
+      font-size: 1.5rem;
+    }
+
+    &__directions {
+      padding: 4rem 2rem;
+    }
+
+    &__directions-text {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@media only screen and (max-width: $bp-smallest) {
+  .recipe {
+    &__fig {
+      height: 24rem;
+    }
+
+    &__title {
+      width: 90%;
+      font-size: 2.1rem;
+      line-height: 1.6;
+
+      span {
+        padding: 0.8rem 1rem;
+      }
+    }
+
+    &__details {
+      padding: 5rem 1.5rem 2.5rem;
+      gap: 1.5rem;
+    }
+
+    &__info {
+      font-size: 1.25rem;
+
+      &-icon {
+        height: 2rem;
+        width: 2rem;
+        margin-right: 0.7rem;
+      }
+    }
+
+    &__user-generated {
+      height: 3.5rem;
+      width: 3.5rem;
+      margin-left: 0;
+
+      svg {
+        height: 2rem;
+        width: 2rem;
+      }
+    }
+
+    &__ingredients {
+      padding: 3rem 1.5rem;
+    }
+
+    &__directions {
+      padding: 3rem 1.5rem;
+    }
+
+    &__directions-text {
+      font-size: 1.4rem;
+    }
+  }
+}
