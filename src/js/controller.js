@@ -50,7 +50,7 @@ const controlSearchResults = async function () {
     // Render initial pagination buttons
     paginationView.render(modle.state.search);
   } catch (err) {
-    console.log(err);
+    RecipeView.renderErrorMessage()
   }
 };
 
@@ -82,7 +82,12 @@ const controlAddBookmark = function() {
   bookmarksView.render(modle.state.bookMarks)
 }
 
+const controlBookmarks = function() {
+  bookmarksView.render(modle.state.bookMarks)
+}
+
 const init = function () {
+  bookmarksView.addHandlerRender(controlBookmarks)
   RecipeView.addHandlerRender(controlRecipes);
   RecipeView.addHandlerRenderUpdateServings(controlServings);
   RecipeView.addHandlerAddBookmarksRecipes(controlAddBookmark)
