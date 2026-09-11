@@ -109,19 +109,20 @@ class RecipeView extends View {
 
   _generateMrkupIngedients(ing) {
     return `
-             <li class="recipe__ingredient">
-              <svg class="recipe__icon">
-                <use href="src/img/icons.svg#icon-check"></use>
-              </svg>
-              <div class="recipe__quantity">${new Fraction(ing.quantity).toFraction(true)}</div>
-              <div class="recipe__description">
-                <span class="recipe__unit">${ing.unit}</span>
-                ${ing.description}
-              </div>
-            </li>
-
-            `;
+    <li class="recipe__ingredient">
+      <svg class="recipe__icon">
+        <use href="${icons}#icon-check"></use>
+      </svg>
+      <div class="recipe__quantity">${new Fraction(ing.quantity).toFraction(true)}</div>
+      <div class="recipe__description">
+        <span class="recipe__unit">${ing.unit}</span>
+        ${ing.description}
+      </div>
+    </li>
+   `;
   }
+
 }
+
 
 export default new RecipeView();
